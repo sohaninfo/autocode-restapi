@@ -10,18 +10,19 @@ template_service = "template_service.js"
 template_controller = "template_controller.js"
 template_route = "template_route.js"
 template_validation = "template_validation.js"
-base_dir = "output"
+#base_dir = "output"
 
 class RestApi():
-    def __init__(self, fileName):
+    def __init__(self, fileName, base_dir):
         f = open(fileName)
         self.data = json.load(f)
         self.file_loader = FileSystemLoader('templates')
         self.env = Environment(loader=self.file_loader)
         self.resourceName = self.data["resource"]
+        self.base_dir = base_dir
 
     def get_abs_filename(self, subdir, fname):
-        fileName = base_dir + subdir + fname
+        fileName = self.base_dir + subdir + fname
         return fileName
 
     def update_index_file(self, indexFile, moduleName, exportModule):
@@ -56,7 +57,7 @@ class RestApi():
         self.write_to_file(fileName, output)
 
     def gen_mongo_module(self):
-        subDir = "/src/model/"
+        subDir = "/src/models/"
         modelFileName = self.resourceName + ".model.js"
         fileName = self.get_abs_filename(subDir, modelFileName)
         self.render_template(mongo_model_template, self.data, fileName)
@@ -107,11 +108,13 @@ class RestApi():
 
 
 def main():
+    base_dir = os.environ.get("BASE_DIR", "ok")
+    print(base_dir)
     parser = argparse.ArgumentParser()
     parser.add_argument("--all", help="Generate all modules!")
     args = parser.parse_args()
     if args.all:
-        rapi = RestApi(args.all)
+        rapi = RestApi(args.all, base_dir)
         rapi.gen_mongo_module()
         rapi.gen_service()
         rapi.gen_controller()

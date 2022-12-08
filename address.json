@@ -3,27 +3,27 @@
 	"fields": [
 		{
             "name": "name",
-			"type": "string"
+			"type": "String"
         },
 		{
 			"name": "street",
-			"type": "string"
+			"type": "String"
 		},
 		{
 			"name": "city",
-			"type": "string"
+			"type": "String"
 		},
 		{
 			"name": "state",
-			"type": "string"
+			"type": "String"
 		},
 		{
 			"name": "country",
-			"type": "string"
+			"type": "String"
 		},
 		{
 			"name": "pin",
-			"type": "string"
+			"type": "String"
 		}
 	]
 }

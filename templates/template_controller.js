@@ -29,8 +29,8 @@ const get{{rescap}} = catchAsync(async (req, res) => {
 });
 
 const delete{{rescap}} = catchAsync(async (req, res) => {
-  console.log("Delete {{rescap}} by id:", req.params.{{rescap}}Id);
-  await {{resource}}Service.delete{{rescap}}(req.params.{{rescap}}Id);
+  console.log("Delete {{rescap}} by id:", req.params.{{resource}}Id);
+  await {{resource}}Service.delete{{rescap}}(req.params.{{resource}}Id);
   res.status(httpStatus.NO_CONTENT).send();
 });
 

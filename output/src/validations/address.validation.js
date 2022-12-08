@@ -1,9 +1,7 @@
-{% set resource = data["resource"] -%}
-{% set rescap = data["resource"].capitalize() -%}
 const Joi = require('joi');
 const { objectId } = require('./custom.validation');
 
-const create{{rescap}} = {
+const createAddress = {
   body: Joi.object().keys({
     name: Joi.string().required(),
     desc: Joi.string().allow(null, ''),
@@ -11,7 +9,7 @@ const create{{rescap}} = {
   }).unknown(true)
 };
 
-const get{{rescap}}s = {
+const getAddresss = {
   query: Joi.object().keys({
     name: Joi.string(),
     sortBy: Joi.string(),
@@ -22,21 +20,21 @@ const get{{rescap}}s = {
 
 
 
-const get{{rescap}} = {
+const getAddress = {
   params: Joi.object().keys({
     testtypeId: Joi.string().custom(objectId),
   }),
 };
 
-const delete{{rescap}} = {
+const deleteAddress = {
   params: Joi.object().keys({
-    {{rescap}}Id: Joi.string().custom(objectId),
+    testtypeId: Joi.string().custom(objectId),
   }),
 };
 
 module.exports = {
-  create{{rescap}},
-  get{{rescap}}s,
-  delete{{rescap}},
-  get{{rescap}}
+  createAddress,
+  getAddresss,
+  deleteAddress,
+  getAddress
 }

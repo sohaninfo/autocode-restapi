@@ -15,5 +15,5 @@ const {{schemaName}} = mongoose.Schema(
 
 {{schemaName}}.plugin(toJSON);
 {{schemaName}}.plugin(paginate);
-const mongoModule = mongoose.model({{data["resource"]}}, {{schemaName}});
+const mongoModule = mongoose.model('{{data["resource"]}}', {{schemaName}});
 module.exports = mongoModule;
